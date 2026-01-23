@@ -1,0 +1,196 @@
+<?php
+//Jemieryn Arzaga
+//CYB-201
+
+date_default_timezone_set('Asia/Manila');
+//International Flights
+
+$interflights = [
+    [
+    'flight_number' => 'AZ100',
+    'airline' => 'Alitalia',
+    'from' => 'JFK',
+    'to' => 'FCO',
+    'departure' => '2026-02-10 10:00',
+    'arrival' => '2026-02-10 22:00',
+    'origin' => 'America/New_York',
+    'dest' => 'Europe/Rome',
+    'img' => 'img/rome.jpg'
+    ],
+    [
+    'flight_number' => 'SQ921',
+    'airline' => 'Singapore Airlines',
+    'from' => 'MNL',
+    'to' => 'SIN',
+    'departure' => '2026-02-20 19:00',
+    'arrival' => '2026-02-20 22:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Singapore',
+    'img' => 'img/singapore.jpeg'
+    ],
+    [
+    'flight_number' => 'JL746',
+    'airline' => 'Japan Airlines',
+    'from' => 'MNL',
+    'to' => 'NRT',
+    'departure' => '2026-02-21 14:00',
+    'arrival' => '2026-02-21 19:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Tokyo',
+    'img' => 'img/japan.jpg'
+    ],
+    [
+    'flight_number' => 'EK335',
+    'airline' => 'Emirates',
+    'from' => 'MNL',
+    'to' => 'DXB',
+    'departure' => '2026-02-22 18:00',
+    'arrival' => '2026-02-22 23:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Dubai',
+    'img' => 'img/dubai.jpg'
+    ],
+    [
+    'flight_number' => 'CX902',
+    'airline' => 'Cathay Pacific',
+    'from' => 'MNL',
+    'to' => 'HKG',
+    'departure' => '2026-02-23 06:00',
+    'arrival' => '2026-02-23 08:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Hong_Kong',
+    'img' => 'img/hongkong.jpg'
+    ]
+    ];
+
+
+//Domestic Flights
+$domesticFlights = [
+    [
+    'flight_number' => 'PR381',
+    'airline' => 'Philippine Airlines',
+    'from' => 'MNL',
+    'to' => 'CEB',
+    'departure' => '2026-02-15 08:00',
+    'arrival' => '2026-02-15 09:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Manila',
+    'img' => 'img/cebu.jpg'
+    ],
+    [
+    'flight_number' => '5J456',
+    'airline' => 'Cebu Pacific',
+    'from' => 'MNL',
+    'to' => 'DVO',
+    'departure' => '2026-02-16 10:00',
+    'arrival' => '2026-02-16 12:00',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Manila',
+    'img' => 'img/davao.jpg'
+    ],
+    [
+    'flight_number' => 'PR123',
+    'airline' => 'Cebu Pacific',
+    'from' => 'MNL',
+    'to' => 'ILO',
+    'departure' => '2026-02-17 14:00',
+    'arrival' => '2026-02-17 15:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Manila',
+    'img' => 'img/iloilo.jpg'
+    ],
+    [
+    'flight_number' => 'PR568',
+    'airline' => 'Cebu Pacific',
+    'from' => 'MNL',
+    'to' => 'PAL',
+    'departure' => '2026-03-17 14:00',
+    'arrival' => '2026-03-17 15:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Manila',
+    'img' => 'img/palawan.jpg'
+    ],
+    [
+    'flight_number' => 'PR39',
+    'airline' => 'Philippine Airlines',
+    'from' => 'MNL',
+    'to' => 'BOR',
+    'departure' => '2026-04-17 13:00',
+    'arrival' => '2026-04-17 14:30',
+    'origin' => 'Asia/Manila',
+    'dest' => 'Asia/Manila',
+    'img' => 'img/boracay.jpg'
+    ]
+    ];
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Schedules</title>
+<!--external css-->
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+
+<body>
+<!--header include-->
+<?php include 'includes/header.php';?>
+
+<h2>International Flights</h2>
+
+<div class="card-grid">
+<?php foreach ($interflights as $flight):
+//putting DateTimezone for correct timezones
+    $dep = new DateTime($flight['departure'], new DateTimeZone($flight['origin']));
+    $arr = new DateTime($flight['arrival'], new DateTimeZone($flight['dest']));
+    $duration = $dep->diff($arr);
+?>
+    <div class="flight-card">
+        <img src="<?= $flight['img'] ?>" alt="Flight image">
+
+    <div class="flight-info">
+        <h3><?= $flight['flight_number'] ?> - <?= $flight['airline'] ?></h3>
+        <p><?= $flight['from'] ?> &rarr; <?= $flight['to'] ?></p>
+        <p>Departure: <?= $dep->format('M d, Y H:i') ?> (<?= $flight['origin'] ?>)</p>
+        <p>Arrival: <?= $arr->format('M d, Y H:i') ?> (<?= $flight['dest'] ?>)</p>
+        <p>Duration: <?= $duration->h ?>h <?= $duration->i ?>m</p>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+<!--domestic flights-->
+<h2>Domestic Flights</h2>
+
+<div class="card-grid">
+<?php foreach ($domesticFlights as $flight):
+
+    $dep = new DateTime($flight['departure'], new DateTimeZone($flight['origin']));
+    $arr = new DateTime($flight['arrival'], new DateTimeZone($flight['dest']));
+    $duration = $dep->diff($arr);
+?>
+    <div class="flight-card">
+        <img src="<?= $flight['img'] ?>" alt="Flight image">
+
+        <div class="flight-info">
+            <h3><?= $flight['flight_number'] ?> - <?= $flight['airline'] ?></h3>
+            <p><?= $flight['from'] ?> &rarr; <?= $flight['to'] ?></p>
+            <p>Departure: <?= $dep->format('M d, Y H:i') ?> (<?= $flight['origin'] ?>)</p>
+            <p>Arrival: <?= $arr->format('M d, Y H:i') ?> (<?= $flight['dest'] ?>)</p>
+            <p>Duration: <?= $duration->h ?>h <?= $duration->i ?>m</p>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+</main>
+
+<!--footer include-->
+<?php include 'includes/footer.php';?>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+
+  background-color: #f7e6e5;
+  font-family: Arial, sans-serif;
+  color: #444;
+  text-align: center;
+}
+
+.main-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  font-family: 'Times New Roman', Times, serif;
+  color: #993344;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: bold;
+
+  margin: 40px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+
+  border: 1px solid #dcbab5;
+  border-left: 8px solid #993344;
+  border-radius: 8px;
+
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 5px 5px 0px #dcbab5;
+
+  line-height: 1.4;
+  text-align: left;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.main-content-wrapper {
+  max-width: 1100px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 40px;
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+
+h2 {
+  background-color: #993344;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 40px 0 20px;
+}
+
+.flight-deals-section {
+  margin-top: 40px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.flight-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  overflow: hidden;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flight-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.flight-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.flight-info {
+  padding: 40px 32px 24px;
+  text-align: center;
+}
+
+.flight-info h3 {
+  margin: 0 0 14px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.flight-info p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 1.15em;
+}
+
+.duration-badge {
+  display: inline-block;
+  background: #fdf2f2;
+  color: #993344;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #993344;
+  color: white;
+  margin-top: 50px;
+}
+
+
+@media (max-width: 850px) {
+
+  .page-title {
+    font-size: 1.6rem;
+    padding: 16px 20px;
+  }
+
+  .logo {
+    width: 45px;
+  }
+
+  .flight-card {
+    width: 100%;
+  }
+
+  .main-content-wrapper {
+    padding: 20px;
+  }
+}
